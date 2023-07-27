@@ -64,8 +64,11 @@ module.exports = (uri, output, opts) => {
 	}
 
 	opts = Object.assign({
-		encoding: null,
-		rejectUnauthorized: process.env.npm_config_strict_ssl !== 'false'
+		encoding: 'buffer',
+		responseType: 'buffer',
+		https: {
+			rejectUnauthorized: process.env.npm_config_strict_ssl !== 'false'
+		}
 	}, opts);
 
 	const stream = got.stream(uri, opts);
